@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodla Srinidhi Vigneshwari | Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 width=%2232%22 height=%2232%22><text y=%2224%22 font-size=%2222%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22%23dd9b00%22>BS</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #242424;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1aa;
+            --accent: #dd9b00;
+            --accent-dim: #b88100;
+            --border: #2d2d2d;
+            
+            --font-display: 'DM Serif Display', serif;
+            --font-sans: 'DM Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Split-screen layout */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                flex-direction: row;
+            }
+        }
+
+        /* Left fixed panel */
+        .left-panel {
+            background-color: var(--bg-secondary);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        @media (min-width: 1024px) {
+            .left-panel {
+                width: 35%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                border-bottom: none;
+                border-right: 1px solid var(--border);
+                padding: 4rem 3rem;
+            }
+        }
+
+        /* Right scrolling panel */
+        .right-panel {
+            padding: 2.5rem 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .right-panel {
+                width: 65%;
+                margin-left: 35%;
+                padding: 4rem 5rem;
+            }
+        }
+
+        /* Hero details */
+        .profile-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .profile-tagline {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-bio {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Left panel navigation links */
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-item::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background-color: var(--text-secondary);
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .nav-item:hover::before {
+            width: 40px;
+            background-color: var(--accent);
+        }
+
+        /* Coding Profiles footer in left panel */
+        .left-footer {
+            margin-top: 2rem;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-icon {
+            color: var(--text-secondary);
+            transition: color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Main Section Stylings */
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        /* Skills layout */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skills-group h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-badge {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--accent);
+            background-color: var(--bg-tertiary);
+        }
+
+        /* Projects List */
+        .project-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        /* Timeline Items (Education & Experience) */
+        .timeline {
+            position: relative;
+            border-left: 1px solid var(--border);
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-1.5rem - 5px);
+            top: 4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: var(--bg-primary);
+            border: 2px solid var(--accent);
+        }
+
+        .timeline-meta {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Achievements / Cards grid short */
+        .badge-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .badge-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .badge-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-card .meta {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .badge-card .title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Contact Details card layout */
+        .contact-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon-wrapper {
+            background-color: var(--bg-tertiary);
+            color: var(--accent);
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-details h5 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.1rem;
+        }
+
+        .contact-details a, .contact-details p {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent);
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: #121212;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- FIXED LEFT PANEL -->
+        <header class="left-panel">
+            <div>
+                <h1 class="profile-title">Bodla Srinidhi Vigneshwari</h1>
+                <p class="profile-tagline">Aspiring Data Analyst & ML Engineer</p>
+                <p class="profile-bio">
+                    Aspiring Data Analyst with a strong foundation in Java, Python, Data Structures, and Algorithms. 
+                    Seeking to utilize technical capabilities in the field of Data Science to extract insights and drive 
+                    impactful analytical strategies.
+                </p>
+                
+                <nav class="nav-links">
+                    <a href="#skills" class="nav-item">Skills</a>
+                    <a href="#projects" class="nav-item">Projects</a>
+                    <a href="#experience" class="nav-item">Experience</a>
+                    <a href="#education" class="nav-item">Education</a>
+                    <a href="#certifications" class="nav-item">Certifications</a>
+                    <a href="#contact" class="nav-item">Contact</a>
+                </nav>
+            </div>
+            
+            <div class="left-footer">
+                <div class="social-row">
+                    <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bodla-srinidhi-7a65b12a7/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://leetcode.com" target="_blank" class="social-icon" aria-label="LeetCode">
+                        <i data-lucide="code-2"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- SCROLLING RIGHT PANEL -->
+        <main class="right-panel">
+            
+            <!-- SKILLS -->
+            <section id="skills">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-container">
+                    <div class="skills-group">
+                        <h4>Core Computer Science</h4>
+                        <div class="skills-list">
+                            <span class="skill-badge">Data Structures & Algorithms</span>
+                            <span class="skill-badge">OOP (Inheritance, Polymorphism, Encapsulation)</span>
+                            <span class="skill-badge">Operating Systems</span>
+                            <span class="skill-badge">Database Management Systems</span>
+                            <span class="skill-badge">ER Modeling</span>
+                            <span class="skill-badge">SQL Queries</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <h4>Programming Languages</h4>
+                        <div class="skills-list">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">Java</span>
+                            <span class="skill-badge">R</span>
+                            <span class="skill-badge">C</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <h4>Tools & Platforms</h4>
+                        <div class="skills-list">
+                            <span class="skill-badge">Power BI</span>
+                            <span class="skill-badge">SQL</span>
+                            <span class="skill-badge">Excel</span>
+                            <span class="skill-badge">VS Code</span>
+                            <span class="skill-badge">Jupyter Notebook</span>
+                            <span class="skill-badge">Eclipse IDE</span>
+                            <span class="skill-badge">Celonis Platform</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section id="projects">
+                <h2 class="section-title">Selected Projects</h2>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Smart Agri-Direct</h3>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" class="project-link" aria-label="GitHub Repository"><i data-lucide="github" size="20"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Built a direct farm-to-customer marketplace integrated with Agentic AI to benefit local sellers and farmers.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Agentic AI</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Marketplace Architecture</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">AI Powered Intelligent OCR</h3>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" class="project-link" aria-label="GitHub Repository"><i data-lucide="github" size="20"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Developed an AI-Based OCR System capable of document understanding, information extraction, and smart error correction.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Computer Vision</span>
+                        <span class="project-tag">AI Models</span>
+                        <span class="project-tag">Text Processing</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">AI Resume Screening System</h3>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" class="project-link" aria-label="GitHub Repository"><i data-lucide="github" size="20"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Built an AI model designed to intelligently analyze and match candidate profiles against targeted career requirements.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">AI/ML</span>
+                        <span class="project-tag">NLP</span>
+                        <span class="project-tag">Python</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Quiz Application</h3>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" class="project-link" aria-label="GitHub Repository"><i data-lucide="github" size="20"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Created a user-friendly frontend web application designed to evaluate active user knowledge through multiple-choice modules and live score evaluation.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML5</span>
+                        <span class="project-tag">CSS3</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section id="experience">
+                <h2 class="section-title">Technical Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-meta">Internship</p>
+                        <h3 class="timeline-title">AI/ML Intern</h3>
+                        <h4 class="timeline-subtitle">Cantilever, India</h4>
+                        <p class="timeline-desc">Advanced foundational Python tracks, implemented modern AI/ML validation workflows, and initiated architecture blueprints for candidate-matching systems.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-meta">Virtual Internship</p>
+                        <h3 class="timeline-title">Celonis Business Analyst Intern</h3>
+                        <h4 class="timeline-subtitle">AICTE - Eduskills, India</h4>
+                        <p class="timeline-desc">Acquired formal competency in process mining, execution data modeling, and data-driven process optimization strategies via the Celonis platform.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section id="education">
+                <h2 class="section-title">Education Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-meta">Expected Graduation: May 2027</p>
+                        <h3 class="timeline-title">B.Tech in Computer Science and Engineering</h3>
+                        <h4 class="timeline-subtitle">Geethanjali College of Engineering and Technology</h4>
+                        <p class="timeline-desc">Secured Second Rank across the specialized Department track. Core coursework covers Algorithms, Systems, DBMS, and Machine Learning structures.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-meta">Graduated: 2023</p>
+                        <h3 class="timeline-title">Intermediate (Board of Intermediate Education)</h3>
+                        <h4 class="timeline-subtitle">Sri Chaitanya Junior Kalasala</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS & HONORS -->
+            <section id="certifications">
+                <h2 class="section-title">Certifications & Achievements</h2>
+                <div class="badge-grid">
+                    <div class="badge-card">
+                        <span class="meta">Oracle Academy</span>
+                        <span class="title">Database Programming with SQL</span>
+                    </div>
+                    <div class="badge-card">
+                        <span class="meta">Oracle Academy</span>
+                        <span class="title">Java Fundamentals & Database Design</span>
+                    </div>
+                    <div class="badge-card">
+                        <span class="meta">Hedera Certified</span>
+                        <span class="title">Hashgraph Developer</span>
+                    </div>
+                    <div class="badge-card">
+                        <span class="meta">Cisco Network Academy</span>
+                        <span class="title">Python Essentials</span>
+                    </div>
+                    <div class="badge-card">
+                        <span class="meta">Virtue Innovate Hackathon</span>
+                        <span class="title">Shortlisted Top 10 Finalist</span>
+                    </div>
+                    <div class="badge-card">
+                        <span class="meta">Academic Distinction</span>
+                        <span class="title">Ranked 2nd in Data Science Department</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-card">
+                    <div class="contact-grid">
+                        <div class="contact-method">
+                            <div class="contact-icon-wrapper"><i data-lucide="mail"></i></div>
+                            <div class="contact-details">
+                                <h5>Email</h5>
+                                <a href="mailto:23r11a67a6@gcet.edu.in">23r11a67a6@gcet.edu.in</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon-wrapper"><i data-lucide="phone"></i></div>
+                            <div class="contact-details">
+                                <h5>Phone</h5>
+                                <p>6302694890</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="mailto:23r11a67a6@gcet.edu.in" class="cta-btn">
+                        Connect Directly <i data-lucide="arrow-right" size="16"></i>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Fade-in element transition logic using IntersectionObserver
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
