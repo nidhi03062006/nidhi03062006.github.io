@@ -1,693 +1,541 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bodla Srinidhi Vigneshwari | Portfolio</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 width=%2232%22 height=%2232%22><text y=%2224%22 font-size=%2222%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22%232563eb%22>BS</text></svg>">
-    
-    <!-- Google Fonts -->
+    <!-- Google Fonts: JetBrains Mono & Work Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght=0,100..800;1,100..800&family=Work+Sans:ital,wght=0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        :root {
-            --bg: #090a0f;
-            --panel-bg: #11131e;
-            --panel-hover: #161a2b;
-            --border: #1e2538;
-            --border-hover: #313d5c;
-            
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            
-            --accent: #2563eb;
-            --accent-glow: rgba(37, 99, 235, 0.15);
-            --accent-border: #3b82f6;
-
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-sans: 'Inter', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            scroll-behavior: smooth;
-        }
-
-        /* Hero Banner */
-        header {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem 2rem 1.5rem;
-            text-align: center;
-        }
-
-        .roll-badge {
-            display: inline-block;
-            background: var(--panel-bg);
-            border: 1px solid var(--border);
-            padding: 0.35rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-family: var(--font-display);
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .tagline {
-            font-family: var(--font-display);
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            color: var(--accent-border);
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .bio {
-            max-width: 700px;
-            margin: 0 auto 2.5rem auto;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
-
-        .social-hero-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .social-badge-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--panel-bg);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.25s ease;
-        }
-
-        .social-badge-link:hover {
-            background: var(--panel-hover);
-            border-color: var(--accent-border);
-            transform: translateY(-2px);
-        }
-
-        /* Bento Grid Architecture */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 6rem 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.25rem;
-        }
-
-        .bento-card {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.75rem;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bento-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .bento-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .bento-card h3 i {
-            color: var(--accent-border);
-        }
-
-        /* Specific Bento Tiles sizing (Desktop) */
-        @media (min-width: 1024px) {
-            .tile-skills { grid-column: span 5; }
-            .tile-projects { grid-column: span 7; }
-            .tile-experience { grid-column: span 7; }
-            .tile-education { grid-column: span 5; }
-            .tile-certs { grid-column: span 8; }
-            .tile-contact { grid-column: span 4; }
-        }
-
-        @media (max-width: 1023px) {
-            .bento-card {
-                grid-column: span 12 !important;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            400: '#818cf8',
+                            500: '#6366f1', /* Electric Indigo */
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            950: '#06040d',
+                        },
+                        darkbg: '#090d16', /* Dark Slate background */
+                        cardbg: 'rgba(15, 23, 42, 0.6)', /* Slate 900 with high transparency */
+                        bordercolor: 'rgba(255, 255, 255, 0.08)' /* Subtle white borders for glass effect */
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['"Work Sans"', 'sans-serif'],
+                    }
+                }
             }
         }
-
-        /* Interactive Card Glow Effect (vanilla script hook) */
-        .glow-hover::after {
+    </script>
+    <style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #090d16;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar optimized for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05070c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+        /* Premium glassmorphism shadow and glow animations for Dark mode */
+        .glow-card {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(13, 18, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glow-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 11px;
-            pointer-events: none;
-            border: 1px solid transparent;
-            background: linear-gradient(135deg, var(--accent-border), transparent 40%) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.01));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .glow-card:hover::after {
+            background: linear-gradient(to bottom right, rgba(99, 102, 241, 0.45), rgba(99, 102, 241, 0.05));
+        }
+        .glow-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px -10px rgba(99, 102, 241, 0.25);
+            background: rgba(16, 22, 37, 0.85);
         }
 
-        .glow-hover:hover::after {
-            opacity: 1;
+        /* Dark Mode Interactive Background Patterns */
+        .bg-pattern-dots {
+            background-color: #06080e;
+            background-image: radial-gradient(#1e293b 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
         }
-
-        /* Skills design */
-        .skills-group {
-            margin-bottom: 1rem;
+        .bg-pattern-grid {
+            background-color: #06080e;
+            background-image: 
+                linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
-
-        .skills-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .skills-group-title {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            margin-bottom: 0.6rem;
-        }
-
-        .skills-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-chip {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            padding: 0.35rem 0.65rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--text-primary);
-        }
-
-        /* Projects inner list */
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .project-item {
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .project-item:last-child {
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.4rem;
-        }
-
-        .project-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 1.05rem;
-        }
-
-        .project-link-icon {
-            color: var(--text-secondary);
-            transition: color 0.2s ease;
-        }
-
-        .project-link-icon:hover {
-            color: var(--accent-border);
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .project-tag {
-            font-size: 0.7rem;
-            background: var(--accent-glow);
-            color: #60a5fa;
-            padding: 0.15rem 0.45rem;
-            border-radius: 4px;
-        }
-
-        /* Experience & Education Timelines */
-        .timeline-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .timeline-block {
-            position: relative;
-            padding-left: 1.25rem;
-            border-left: 2px solid var(--border);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -5px;
-            top: 4px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent-border);
-        }
-
-        .timeline-header {
-            font-size: 0.8rem;
-            color: var(--accent-border);
-            font-family: var(--font-display);
-            margin-bottom: 0.2rem;
-            font-weight: 500;
-        }
-
-        .timeline-role {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .timeline-org {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.4rem;
-        }
-
-        .timeline-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.45;
-        }
-
-        /* Certifications List */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.85rem;
-        }
-
-        @media (min-width: 640px) {
-            .cert-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .cert-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            padding: 0.85rem;
-            border-radius: 8px;
-        }
-
-        .cert-name {
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            margin-bottom: 0.15rem;
-        }
-
-        .cert-issuer {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        /* Contact Details card */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .contact-icon {
-            background: var(--accent-glow);
-            color: var(--accent-border);
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-text {
-            font-size: 0.85rem;
-        }
-
-        .contact-text label {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-
-        .contact-text a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .contact-text a:hover {
-            color: var(--accent-border);
-        }
-
-        .btn-mail {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: var(--accent);
-            color: white;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            margin-top: 1rem;
-            transition: background 0.2s ease;
-        }
-
-        .btn-mail:hover {
-            background: #1d4ed8;
+        .bg-pattern-mesh {
+            background-color: #04050a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(165, 180, 252, 0.15) 0px, transparent 50%);
         }
     </style>
+    <!-- Favicon SVG representation of BSV -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100%25' height='100%25' fill='%23090d16'/%3E%3Ctext x='50%25' y='55%25' font-family='monospace' font-weight='bold' font-size='40' fill='%23818cf8' dominant-baseline='middle' text-anchor='middle'%3EBSV%3C/text%3E%3C/svg%3E">
 </head>
-<body>
+<body class="text-slate-300 min-h-screen relative overflow-x-hidden selection:bg-brand-500/20 selection:text-brand-400">
 
-    <header>
-        <span class="roll-badge">Roll: 23R11A67A6</span>[cite: 1]
-        <h1>Bodla Srinidhi Vigneshwari</h1>[cite: 1]
-        <p class="tagline">Aspiring Data Analyst & ML Engineer</p>[cite: 1]
-        <p class="bio">
-            Aspiring Data Analyst with a strong foundation in Java, Python, Data Structures, and Algorithms.[cite: 1] 
-            Seeking to utilize technical capabilities in the field of Data Science to extract insights and build 
-            analytical pathways for real-world impact.[cite: 1]
-        </p>
-
-        <div class="social-hero-links">
-            <a href="https://github.com/nidhi03062006" target="_blank" class="social-badge-link">
-                <i data-lucide="github" size="16"></i> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/bodla-srinidhi-7a65b12a7/" target="_blank" class="social-badge-link">
-                <i data-lucide="linkedin" size="16"></i> LinkedIn
-            </a>
-            <a href="https://leetcode.com/u/srinidhi_vigneshwari/" target="_blank" class="social-badge-link">
-                <i data-lucide="code-2" size="16"></i> LeetCode
-            </a>
-            <a href="https://www.hackerrank.com/profile/bodlasrinidhi201" target="_blank" class="social-badge-link">
-                <i data-lucide="award" size="16"></i> HackerRank
-            </a>
-            <a href="https://codeforces.com/profile/srinidhivigneshwari" target="_blank" class="social-badge-link">
-                <i data-lucide="bar-chart-2" size="16"></i> Codeforces
-            </a>
-            <a href="https://www.codechef.com/users/steam_fest_34" target="_blank" class="social-badge-link">
-                <i data-lucide="terminal" size="16"></i> CodeChef
-            </a>
+    <div id="bg-canvas" class="absolute inset-0 -z-10 transition-all duration-700 ease-in-out bg-slate-950">
+        <!-- Soft Dynamic Glow Overlays for Premium Depth -->
+        <div id="bg-glows" class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-brand-500/10 blur-[130px] pointer-events-none"></div>
+            <div class="absolute bottom-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-indigo-500/10 blur-[130px] pointer-events-none"></div>
         </div>
-    </header>
+    </div>
 
-    <main>
+    <main class="max-w-7xl mx-auto px-4 py-8 md:py-16 space-y-6 relative z-10">
         
-        <!-- SKILLS TILE -->
-        <section class="bento-card tile-skills glow-hover">
-            <h3><i data-lucide="cpu" size="20"></i> Core Skills</h3>
-            
-            <div class="skills-group">
-                <p class="skills-group-title">Languages & Database</p>
-                <div class="skills-chips">
-                    <span class="skill-chip">Python</span>[cite: 1]
-                    <span class="skill-chip">Java</span>[cite: 1]
-                    <span class="skill-chip">R</span>[cite: 1]
-                    <span class="skill-chip">C</span>[cite: 1]
-                    <span class="skill-chip">SQL</span>[cite: 1]
-                </div>
+        <!-- Sticky Navigation Header -->
+        <header class="flex items-center justify-between py-4 px-6 bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/5 mb-8 shadow-2xl">
+            <div class="flex items-center space-x-3">
+                <span class="h-3.5 w-3.5 rounded-full bg-brand-500 animate-pulse"></span>
+                <span class="font-mono text-sm tracking-widest uppercase text-slate-200">Bodla Srinidhi V.</span>
             </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-mono">
+                <a href="#about" class="text-slate-400 hover:text-brand-400 transition">/about</a>
+                <a href="#skills" class="text-slate-400 hover:text-brand-400 transition">/skills</a>
+                <a href="#projects" class="text-slate-400 hover:text-brand-400 transition">/projects</a>
+                <a href="#experience" class="text-slate-400 hover:text-brand-400 transition">/experience</a>
+                <a href="#education" class="text-slate-400 hover:text-brand-400 transition">/education</a>
+            </nav>
+            <a href="mailto:23r11a67a6@gcet.edu.in" class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-xl text-xs font-mono font-semibold transition flex items-center gap-2 shadow-lg shadow-brand-600/30">
+                <i data-lucide="mail" class="w-3.5 h-3.5"></i> Let's Talk
+            </a>
+        </header>
 
-            <div class="skills-group" style="margin-top: 1.25rem;">
-                <p class="skills-group-title">CS Fundamentals</p>
-                <div class="skills-chips">
-                    <span class="skill-chip">Data Structures & Algorithms</span>[cite: 1]
-                    <span class="skill-chip">Object-Oriented Programming (OOP)</span>[cite: 1]
-                    <span class="skill-chip">Operating Systems</span>[cite: 1]
-                    <span class="skill-chip">Database Management Systems (DBMS)</span>[cite: 1]
+        <!-- Bento Box Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Card 1: Main Hero & Bio (Span 2) -->
+            <div id="about" class="glow-card md:col-span-2 bg-cardbg rounded-3xl p-6 md:p-8 border border-bordercolor flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition pointer-events-none">
+                    <i data-lucide="terminal" class="w-32 h-32 text-brand-400"></i>
                 </div>
-            </div>
-
-            <div class="skills-group" style="margin-top: 1.25rem;">
-                <p class="skills-group-title">Tools & Visualization</p>
-                <div class="skills-chips">
-                    <span class="skill-chip">Power BI</span>[cite: 1]
-                    <span class="skill-chip">Excel</span>[cite: 1]
-                    <span class="skill-chip">Jupyter Notebook</span>[cite: 1]
-                    <span class="skill-chip">Celonis Platform</span>[cite: 1]
-                    <span class="skill-chip">VS Code</span>[cite: 1]
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS TILE -->
-        <section class="bento-card tile-projects glow-hover">
-            <h3><i data-lucide="folder-git-2" size="20"></i> Featured Projects</h3>
-            <div class="project-list">
-                
-                <div class="project-item">
-                    <div class="project-meta">
-                        <span class="project-name">Smart Agri-Direct</span>
-                        <a href="https://github.com/nidhi03062006" target="_blank" class="project-link-icon" aria-label="GitHub Repository">
-                            <i data-lucide="github" size="16"></i>
-                        </a>
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-brand-500/15 text-brand-400 px-3 py-1.5 rounded-full text-xs font-mono mb-6 border border-brand-500/30">
+                        <span class="h-1.5 w-1.5 rounded-full bg-brand-400 animate-ping"></span>
+                        Open for Data Analyst Internships
                     </div>
-                    <p class="project-desc">Built a direct farm-to-customer marketplace integrated with Agentic AI for local sellers and farmers.</p>[cite: 1]
-                    <div class="project-tags">
-                        <span class="project-tag">Agentic AI</span>[cite: 1]
-                        <span class="project-tag">Marketplace Architecture</span>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-meta">
-                        <span class="project-name">AI Powered Intelligent OCR</span>
-                        <a href="https://github.com/nidhi03062006" target="_blank" class="project-link-icon" aria-label="GitHub Repository">
-                            <i data-lucide="github" size="16"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">Developed an AI-Based OCR System for document understanding, text extraction, and smart error correction.</p>[cite: 1]
-                    <div class="project-tags">
-                        <span class="project-tag">AI Models</span>[cite: 1]
-                        <span class="project-tag">Text Extraction</span>[cite: 1]
-                        <span class="project-tag">OCR</span>[cite: 1]
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-meta">
-                        <span class="project-name">AI Resume Screening System</span>
-                        <a href="https://github.com/nidhi03062006" target="_blank" class="project-link-icon" aria-label="GitHub Repository">
-                            <i data-lucide="github" size="16"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">Built an AI model designed to analyze, parse, and match candidate profiles against targeted roles.</p>[cite: 1]
-                    <div class="project-tags">
-                        <span class="project-tag">AI/ML</span>[cite: 1]
-                        <span class="project-tag">Python</span>[cite: 1]
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-meta">
-                        <span class="project-name">Quiz App</span>
-                        <a href="https://github.com/nidhi03062006" target="_blank" class="project-link-icon" aria-label="GitHub Repository">
-                            <i data-lucide="github" size="16"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">Created an active Quiz Application using HTML, CSS, and JavaScript to evaluate users' knowledge and display scores.</p>[cite: 1]
-                    <div class="project-tags">
-                        <span class="project-tag">HTML5</span>[cite: 1]
-                        <span class="project-tag">CSS3</span>[cite: 1]
-                        <span class="project-tag">JavaScript</span>[cite: 1]
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- EXPERIENCE TILE -->
-        <section class="bento-card tile-experience glow-hover">
-            <h3><i data-lucide="briefcase" size="20"></i> Technical Experience</h3>
-            <div class="timeline-wrapper">
-                
-                <div class="timeline-block">
-                    <div class="timeline-dot"></div>
-                    <p class="timeline-header">Internship</p>
-                    <h4 class="timeline-role">AI/ML Intern</h4>
-                    <p class="timeline-org">Cantilever, India</p>[cite: 1]
-                    <p class="timeline-desc">
-                        Learned advanced python fundamentals and model implementation workflow; initiated design patterns for AI-driven resume screening tools.[cite: 1]
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3 text-white">
+                        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-indigo-400 to-purple-400">Srinidhi</span>
+                    </h1>
+                    <p class="font-mono text-sm text-brand-400 mb-6 font-semibold">Aspiring Data Analyst & Software Engineer</p>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-xl">
+                        A highly analytical Computer Science and Engineering student with a robust understanding of Data Structures, Algorithms, and Object-Oriented Programming. Dedicated to turning complex raw data into actionable visual insights using Python, R, and advanced visualization tools.
                     </p>
                 </div>
-
-                <div class="timeline-block">
-                    <div class="timeline-dot"></div>
-                    <p class="timeline-header">Virtual Internship</p>
-                    <h4 class="timeline-role">Celonis Business Analyst Intern</h4>
-                    <p class="timeline-org">AICTE - Eduskills, India</p>[cite: 1]
-                    <p class="timeline-desc">
-                        Acquired hands-on exposure to process mining, analyzing enterprise business workflows, and process optimization patterns using Celonis.[cite: 1]
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- EDUCATION TILE -->
-        <section class="bento-card tile-education glow-hover">
-            <h3><i data-lucide="graduation-cap" size="20"></i> Academic Journey</h3>
-            <div class="timeline-wrapper">
-
-                <div class="timeline-block">
-                    <div class="timeline-dot"></div>
-                    <p class="timeline-header">Expected graduation: May 2027</p>[cite: 1]
-                    <h4 class="timeline-role">B.Tech in Computer Science and Engineering</h4>[cite: 1]
-                    <p class="timeline-org">Geethanjali College of Engineering & Technology</p>[cite: 1]
-                    <p class="timeline-desc">Secured Second Rank in the Department of Data Science track.</p>[cite: 1]
-                </div>
-
-                <div class="timeline-block">
-                    <div class="timeline-dot"></div>
-                    <p class="timeline-header">Graduated: 2023</p>[cite: 1]
-                    <h4 class="timeline-role">Intermediate (Board of Intermediate Education)</h4>[cite: 1]
-                    <p class="timeline-org">Sri Chaitanya Junior Kalasala</p>[cite: 1]
-                </div>
-
-            </div>
-        </section>
-
-        <!-- CERTIFICATIONS TILE -->
-        <section class="bento-card tile-certs glow-hover">
-            <h3><i data-lucide="award" size="20"></i> Certifications & Honors</h3>
-            <div class="cert-grid">
-                <div class="cert-item">
-                    <p class="cert-name">Database Programming with SQL</p>[cite: 1]
-                    <p class="cert-issuer">Oracle Academy</p>[cite: 1]
-                </div>
-                <div class="cert-item">
-                    <p class="cert-name">Java Fundamentals</p>[cite: 1]
-                    <p class="cert-issuer">Oracle Academy</p>[cite: 1]
-                </div>
-                <div class="cert-item">
-                    <p class="cert-name">Database Design</p>[cite: 1]
-                    <p class="cert-issuer">Oracle Academy</p>[cite: 1]
-                </div>
-                <div class="cert-item">
-                    <p class="cert-name">Hashgraph Developer</p>[cite: 1]
-                    <p class="cert-issuer">Hedera Certified</p>[cite: 1]
-                </div>
-                <div class="cert-item">
-                    <p class="cert-name">Python Essentials</p>[cite: 1]
-                    <p class="cert-issuer">Cisco Network Academy</p>[cite: 1]
-                </div>
-                <div class="cert-item">
-                    <p class="cert-name">Hackathon Shortlist (Top 10)</p>[cite: 1]
-                    <p class="cert-issuer">Virtue Innovate Hackathon</p>[cite: 1]
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT TILE -->
-        <section class="bento-card tile-contact glow-hover">
-            <h3><i data-lucide="mail" size="20"></i> Reach Out</h3>
-            <div class="contact-info">
-                <div class="contact-row">
-                    <div class="contact-icon"><i data-lucide="mail" size="16"></i></div>
-                    <div class="contact-text">
-                        <label>Email</label>
-                        <a href="mailto:23r11a67a6@gcet.edu.in">23r11a67a6@gcet.edu.in</a>[cite: 1]
+                
+                <div class="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div>
+                        <span class="block text-xs font-mono text-slate-500">LOCATION</span>
+                        <span class="text-sm font-semibold text-slate-200">Hyderabad, India</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-mono text-slate-500">PHONE</span>
+                        <a href="tel:6302694890" class="text-sm font-semibold text-slate-200 hover:text-brand-400 transition">6302694890</a>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <span class="block text-xs font-mono text-slate-500">EMAIL</span>
+                        <a href="mailto:23r11a67a6@gcet.edu.in" class="text-sm font-semibold text-slate-200 hover:text-brand-400 transition break-all">23r11a67a6@gcet.edu.in</a>
                     </div>
                 </div>
-                <div class="contact-row">
-                    <div class="contact-icon"><i data-lucide="phone" size="16"></i></div>
-                    <div class="contact-text">
-                        <label>Phone</label>
-                        <a href="tel:6302694890">6302694890</a>[cite: 1]
-                    </div>
-                </div>
-                <div class="contact-row">
-                    <div class="contact-icon"><i data-lucide="linkedin" size="16"></i></div>
-                    <div class="contact-text">
-                        <label>LinkedIn</label>
-                        <a href="https://www.linkedin.com/in/bodla-srinidhi-7a65b12a7/" target="_blank">bodla-srinidhi</a>[cite: 1]
-                    </div>
-                </div>
-
-                <a href="mailto:23r11a67a6@gcet.edu.in" class="btn-mail">
-                    Send Mail <i data-lucide="arrow-right" size="16"></i>
-                </a>
             </div>
-        </section>
+
+            <!-- Card 2: Coding Profiles -->
+            <div class="glow-card bg-cardbg rounded-3xl p-6 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest mb-2 font-bold">/coding-profiles</h3>
+                    <p class="text-xs text-slate-400 mb-6">Explore my algorithmic performance and verified profiles across competitive programming platforms.</p>
+                </div>
+                <div class="space-y-3">
+                    <!-- GitHub -->
+                    <a href="https://github.com/nidhi03062006" target="_blank" class="flex items-center justify-between p-3 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-brand-500/50 hover:bg-slate-900/80 transition-all group">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="github" class="w-5 h-5 text-slate-400 group-hover:text-brand-400"></i>
+                            <span class="text-sm font-mono text-slate-200 group-hover:text-brand-400">GitHub</span>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+                    <!-- LeetCode -->
+                    <a href="https://leetcode.com/u/srinidhi_vigneshwari/" target="_blank" class="flex items-center justify-between p-3 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-brand-500/50 hover:bg-slate-900/80 transition-all group">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono font-bold text-orange-400 text-sm w-5 text-center">LC</span>
+                            <span class="text-sm font-mono text-slate-200 group-hover:text-brand-400">LeetCode</span>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+                    <!-- HackerRank -->
+                    <a href="https://www.hackerrank.com/profile/bodlasrinidhi201" target="_blank" class="flex items-center justify-between p-3 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-brand-500/50 hover:bg-slate-900/80 transition-all group">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono font-bold text-emerald-400 text-sm w-5 text-center">HR</span>
+                            <span class="text-sm font-mono text-slate-200 group-hover:text-brand-400">HackerRank</span>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+                    <!-- Codeforces -->
+                    <a href="https://codeforces.com/profile/srinidhivigneshwari" target="_blank" class="flex items-center justify-between p-3 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-brand-500/50 hover:bg-slate-900/80 transition-all group">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono font-bold text-blue-400 text-sm w-5 text-center">CF</span>
+                            <span class="text-sm font-mono text-slate-200 group-hover:text-brand-400">Codeforces</span>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+                    <!-- CodeChef -->
+                    <a href="https://www.codechef.com/users/steam_fest_34" target="_blank" class="flex items-center justify-between p-3 bg-slate-900/50 rounded-2xl border border-white/5 hover:border-brand-500/50 hover:bg-slate-900/80 transition-all group">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono font-bold text-amber-500 text-sm w-5 text-center">CC</span>
+                            <span class="text-sm font-mono text-slate-200 group-hover:text-brand-400">CodeChef</span>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: Skills Architecture -->
+            <div id="skills" class="glow-card bg-cardbg rounded-3xl p-6 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold">/technical-toolkit</h3>
+                        <i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- Languages -->
+                        <div>
+                            <span class="text-xs font-mono text-slate-500 block mb-2 uppercase">Programming</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">Java</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">Python</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">C</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">R</span>
+                            </div>
+                        </div>
+
+                        <!-- Core CS -->
+                        <div>
+                            <span class="text-xs font-mono text-slate-500 block mb-2 uppercase">Core Computer Science</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">DSA</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">OOP (Object Oriented)</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">Operating Systems</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">DBMS & SQL</span>
+                            </div>
+                        </div>
+
+                        <!-- Tools -->
+                        <div>
+                            <span class="text-xs font-mono text-slate-500 block mb-2 uppercase">Tools & Engineering</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">VS Code</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">Power BI</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">Jupyter</span>
+                                <span class="text-xs bg-slate-900/60 px-2.5 py-1.5 rounded-lg border border-white/5 font-mono text-slate-300">Excel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-500 font-mono">
+                    <span>Clean Architecture</span>
+                    <span>Optimized DSA</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Projects Showcase (Span 2) -->
+            <div id="projects" class="glow-card md:col-span-2 bg-cardbg rounded-3xl p-6 md:p-8 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold">/recent-builds</h3>
+                        <div class="flex gap-2">
+                            <span class="h-2 w-2 rounded-full bg-indigo-500/40"></span>
+                            <span class="h-2 w-2 rounded-full bg-brand-400/40"></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Project 1 -->
+                        <div class="bg-slate-900/40 p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-indigo-500/30 hover:bg-slate-900/80 transition-all group">
+                            <div>
+                                <span class="text-[11px] font-mono text-brand-400 block mb-2 font-semibold">Agentic AI & Marketplace</span>
+                                <h4 class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors mb-2">Smart Agri-Direct</h4>
+                                <p class="text-xs text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                                    A robust direct farm-to-customer marketplace with Agentic AI integration, bridging the gap between local sellers, farmers, and modern consumers.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">Agentic AI</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">Marketplace</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="bg-slate-900/40 p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-indigo-500/30 hover:bg-slate-900/80 transition-all group">
+                            <div>
+                                <span class="text-[11px] font-mono text-brand-400 block mb-2 font-semibold">OCR & Error Correction</span>
+                                <h4 class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors mb-2">AI Powered OCR</h4>
+                                <p class="text-xs text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                                    An Intelligent OCR system focused on precise document understanding, structural information extraction, and smart contextual error correction.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">AI</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">OCR</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">NLP</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div class="bg-slate-900/40 p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-indigo-500/30 hover:bg-slate-900/80 transition-all group">
+                            <div>
+                                <span class="text-[11px] font-mono text-brand-400 block mb-2 font-semibold">AI Resume Matcher</span>
+                                <h4 class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors mb-2">Resume Screening System</h4>
+                                <p class="text-xs text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                                    Integrated AI-driven algorithmic models designed to parse, rank, and dynamically match candidate resumes against distinct role profiles.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">Python</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">AI/ML</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="bg-slate-900/40 p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-indigo-500/30 hover:bg-slate-900/80 transition-all group">
+                            <div>
+                                <span class="text-[11px] font-mono text-brand-400 block mb-2 font-semibold">Vanilla JS Web App</span>
+                                <h4 class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors mb-2">Interactive Quiz App</h4>
+                                <p class="text-xs text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                                    A modern evaluation web app featuring structured multiple-choice questions, live scoring mechanisms, and a streamlined UX design.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">JavaScript</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded">CSS Grid</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Industry Internships (Span 2) -->
+            <div id="experience" class="glow-card md:col-span-2 bg-cardbg rounded-3xl p-6 md:p-8 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold mb-6">/industry-experience</h3>
+                    
+                    <div class="space-y-6 relative before:absolute before:inset-y-1 before:left-3.5 before:w-0.5 before:bg-slate-800">
+                        <!-- Experience Item 1 -->
+                        <div class="relative pl-10 group">
+                            <div class="absolute left-1.5 top-1 h-4 w-4 rounded-full bg-brand-500 border-4 border-slate-950 group-hover:scale-125 transition-transform"></div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors">AI/ML Intern</h4>
+                                    <span class="text-xs font-mono text-slate-500">Cantilever, India</span>
+                                </div>
+                                <span class="text-xs font-mono text-brand-400 mt-1 sm:mt-0 font-semibold">Core ML Track</span>
+                            </div>
+                            <ul class="text-xs text-slate-400 list-disc list-inside space-y-1.5 leading-relaxed">
+                                <li>Mastered foundational Python and engineered predictive ML model pipelines.</li>
+                                <li>Pioneered development protocols on AI-based resume indexing & strategic matches.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Experience Item 2 -->
+                        <div class="relative pl-10 group">
+                            <div class="absolute left-1.5 top-1 h-4 w-4 rounded-full bg-indigo-400 border-4 border-slate-950 group-hover:scale-125 transition-transform"></div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-200 group-hover:text-brand-400 transition-colors">Celonis Business Analyst Virtual Intern</h4>
+                                    <span class="text-xs font-mono text-slate-500">AICTE - Eduskills</span>
+                                </div>
+                                <span class="text-xs font-mono text-brand-400 mt-1 sm:mt-0 font-semibold">Process Mining Track</span>
+                            </div>
+                            <ul class="text-xs text-slate-400 list-disc list-inside space-y-1.5 leading-relaxed">
+                                <li>Acquired deep industry proficiency in Business Process Analysis & Execution.</li>
+                                <li>Leveraged the Celonis EMS Platform to orchestrate optimization diagnostics.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Education Track (Span 1) -->
+            <div id="education" class="glow-card bg-cardbg rounded-3xl p-6 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold mb-6">/academic-foundation</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- GCET -->
+                        <div class="relative pl-4 border-l-2 border-indigo-500">
+                            <span class="text-[10px] font-mono text-indigo-400 block mb-1 font-semibold">MAY 2027 (EXPECTED)</span>
+                            <h4 class="text-sm font-bold text-slate-200">B.Tech Computer Science</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mt-1">Geethanjali College of Engineering and Technology</p>
+                        </div>
+
+                        <!-- Junior College -->
+                        <div class="relative pl-4 border-l-2 border-slate-700">
+                            <span class="text-[10px] font-mono text-slate-500 block mb-1 font-semibold">COMPLETED 2023</span>
+                            <h4 class="text-sm font-bold text-slate-300">Intermediate Education</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mt-1">Sri Chaitanya Junior Kalasala</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-white/5 flex justify-between items-center">
+                    <span class="text-xs text-slate-500">Major: CSE</span>
+                    <span class="text-xs bg-brand-500/10 text-brand-400 border border-brand-500/20 px-2 py-0.5 rounded font-mono font-bold">Top Ranker</span>
+                </div>
+            </div>
+
+            <!-- Card 7: Certifications & Core Credentials (Span 1) -->
+            <div class="glow-card bg-cardbg rounded-3xl p-6 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold mb-4">/credentials</h3>
+                    <p class="text-xs text-slate-400 mb-6">Verified platform specializations and professional certifications.</p>
+                </div>
+                <div class="space-y-3.5">
+                    <div class="flex items-start gap-2.5">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-brand-400 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-200">Database Programming with SQL</h4>
+                            <p class="text-[10px] text-slate-500">Oracle Academy</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-brand-400 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-200">Java Fundamentals</h4>
+                            <p class="text-[10px] text-slate-500">Oracle Academy</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-brand-400 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-200">Database Design</h4>
+                            <p class="text-[10px] text-slate-500">Oracle Academy</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-brand-400 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-200">Hashgraph Developer</h4>
+                            <p class="text-[10px] text-slate-500">Hedera Certified</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-brand-400 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-200">Python Essentials</h4>
+                            <p class="text-[10px] text-slate-500">Cisco Network Academy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: Achievements & Distinctions (Span 1) -->
+            <div class="glow-card bg-cardbg rounded-3xl p-6 border border-bordercolor flex flex-col justify-between">
+                <div>
+                    <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold mb-4">/achievements</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 bg-slate-900/60 rounded-2xl border border-white/5">
+                            <span class="text-[10px] font-mono text-brand-400 block mb-1 font-bold">VIRTUE INNOVATE HACKATHON</span>
+                            <p class="text-xs font-semibold text-slate-300 leading-relaxed">Shortlisted in top 10 for demonstrating exceptional problem-solving & innovation.</p>
+                        </div>
+                        <div class="p-3 bg-slate-900/60 rounded-2xl border border-white/5">
+                            <span class="text-[10px] font-mono text-brand-400 block mb-1 font-bold">ACADEMICS</span>
+                            <p class="text-xs font-semibold text-slate-300 leading-relaxed">Secured second rank overall in the Data Science department.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 flex gap-2 flex-wrap text-[10px] text-slate-500 font-mono">
+                    <span>#Telugu(Native)</span>
+                    <span>#Hindi</span>
+                    <span>#English</span>
+                </div>
+            </div>
+
+            <!-- Card 9: Quick Interactivity & Contact Portal (Span 1) -->
+            <div class="glow-card bg-cardbg rounded-3xl p-6 border border-bordercolor flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute -right-12 -bottom-12 p-4 opacity-10 group-hover:opacity-20 transition pointer-events-none">
+                    <i data-lucide="contact" class="w-36 h-36 text-brand-400"></i>
+                </div>
+                <div>
+                    <h3 class="font-mono text-xs text-brand-400 uppercase tracking-widest font-bold mb-4">/connect</h3>
+                    <p class="text-xs text-slate-400 mb-6 leading-relaxed">Let's discuss opportunities. I'm readily available for tech conversations and internships.</p>
+                    
+                    <div class="space-y-2">
+                        <a href="mailto:23r11a67a6@gcet.edu.in" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-900/50 transition group-hover:translate-x-1 transition-transform">
+                            <i data-lucide="mail" class="w-4 h-4 text-brand-400"></i>
+                            <span class="text-xs font-mono text-slate-300">23r11a67a6@gcet.edu.in</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bodla-srinidhi-7a65b12a7/" target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-900/50 transition group-hover:translate-x-1 transition-transform">
+                            <i data-lucide="linkedin" class="w-4 h-4 text-indigo-400"></i>
+                            <span class="text-xs font-mono text-slate-300">bodla-srinidhi</span>
+                        </a>
+                        <div class="flex items-center gap-3 p-2.5 rounded-xl">
+                            <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+                            <span class="text-xs font-mono text-slate-300">6302694890</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <p class="text-[10px] font-mono text-slate-500 text-center">Built for performance • May 2026</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Floating Interactive Canvas Controller -->
+        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/10 shadow-2xl flex items-center gap-1 sm:gap-2 transition-all duration-300 hover:shadow-brand-500/10 hover:border-white/20">
+            <span class="text-[10px] font-mono text-slate-500 font-bold px-2 uppercase tracking-wider hidden md:inline-block">Style Canvas:</span>
+            <button onclick="changeBg('minimal')" id="btn-bg-minimal" class="px-3 py-1.5 text-xs font-mono font-semibold rounded-full transition-all duration-200 bg-brand-600 text-white shadow-lg shadow-brand-500/20">Minimal</button>
+            <button onclick="changeBg('dots')" id="btn-bg-dots" class="px-3 py-1.5 text-xs font-mono font-semibold rounded-full transition-all duration-200 text-slate-400 hover:text-slate-100 hover:bg-white/5">Dots</button>
+            <button onclick="changeBg('grid')" id="btn-bg-grid" class="px-3 py-1.5 text-xs font-mono font-semibold rounded-full transition-all duration-200 text-slate-400 hover:text-slate-100 hover:bg-white/5">Grid</button>
+            <button onclick="changeBg('mesh')" id="btn-bg-mesh" class="px-3 py-1.5 text-xs font-mono font-semibold rounded-full transition-all duration-200 text-slate-400 hover:text-slate-100 hover:bg-white/5">Mesh</button>
+        </div>
 
     </main>
 
@@ -695,18 +543,46 @@
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Interactive Bento Glow Effect
-        const cards = document.querySelectorAll('.bento-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+        // Welcome message in console
+        console.log("Welcome to Bodla Srinidhi Vigneshwari's Premium Dark Bento Portfolio.");
+
+        // Dynamic Canvas Switcher Logic (Dark mode variant presets)
+        function changeBg(type) {
+            const bgCanvas = document.getElementById('bg-canvas');
+            const bgGlows = document.getElementById('bg-glows');
+            const buttons = {
+                minimal: document.getElementById('btn-bg-minimal'),
+                dots: document.getElementById('btn-bg-dots'),
+                grid: document.getElementById('btn-bg-grid'),
+                mesh: document.getElementById('btn-bg-mesh')
+            };
+
+            // Reset standard wrapper configurations
+            bgCanvas.className = "absolute inset-0 -z-10 transition-all duration-700 ease-in-out";
+            bgGlows.style.display = "none";
+
+            // Map and apply target classes for premium dark canvases
+            if (type === 'minimal') {
+                bgCanvas.classList.add('bg-slate-950');
+                bgGlows.style.display = "block";
+            } else if (type === 'dots') {
+                bgCanvas.classList.add('bg-pattern-dots');
+            } else if (type === 'grid') {
+                bgCanvas.classList.add('bg-pattern-grid');
+            } else if (type === 'mesh') {
+                bgCanvas.classList.add('bg-pattern-mesh');
+            }
+
+            // Update interactive layout button statuses with premium dark glass design
+            Object.keys(buttons).forEach(key => {
+                const btn = buttons[key];
+                if (key === type) {
+                    btn.className = "px-3 py-1.5 text-xs font-mono font-semibold rounded-full transition-all duration-200 bg-brand-600 text-white shadow-lg shadow-brand-500/20";
+                } else {
+                    btn.className = "px-3 py-1.5 text-xs font-mono font-semibold rounded-full transition-all duration-200 text-slate-400 hover:text-slate-100 hover:bg-white/5";
+                }
             });
-        });
+        }
     </script>
 </body>
 </html>
